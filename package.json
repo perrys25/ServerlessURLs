@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "pages:build": "npx @cloudflare/next-on-pages",
-    "preview": "npm run pages:build && wrangler pages dev",
+    "preview": "npm run pages:build && wrangler pages dev --port 3000 --kv=URLS_KV",
     "deploy": "npm run pages:build && wrangler pages deploy",
     "cf-typegen": "wrangler types --env-interface CloudflareEnv env.d.ts"
   },
