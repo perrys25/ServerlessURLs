@@ -2,7 +2,7 @@
 
 import React, {FormEvent} from "react";
 
-export default function URLShortener({children}: {children: React.ReactNode}): React.ReactNode {
+export default function URLShortener({children}: {children?: React.ReactNode}): React.ReactNode {
     const [code, setCode] = React.useState<string>();
 
     async function onSubmit(event: FormEvent<HTMLFormElement>) {
