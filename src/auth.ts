@@ -3,7 +3,7 @@ import authConfig from "./auth.config"
 import { D1Adapter } from "@auth/d1-adapter"
 import {getRequestContext} from '@cloudflare/next-on-pages'
 
-async function AUTH_D1() {
+function AUTH_D1() {
     console.log('Loading AUTH_D1')
     if (process.env.NODE_ENV === 'development') {
         return getRequestContext().env.AUTH_D1
