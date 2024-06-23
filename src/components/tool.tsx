@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 
-export function Tool({name, menu, link}: {name: string, menu: React.ReactNode, link?: undefined} | {name: string, menu?: undefined, link: string} ) {
+export function Tool({name, menu, link}: {name: string | React.ReactNode, menu: React.ReactNode, link?: undefined} | {name: string | React.ReactNode, menu?: undefined, link: string} ) {
 
     const [open, setOpen] = React.useState(false);
 

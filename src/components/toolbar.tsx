@@ -13,7 +13,10 @@ export default async function Toolbar() {
             </div>
             <span className="flex-grow mx-auto"/>
             {
-                session ? <img src={session.user?.image ?? "./example"} alt="Profile Image" className="w-8 h-8 rounded-full py-auto px-2"/> : <Tool name={"Sign in"} menu={<SignIn/>}/>
+                // eslint-disable-next-line @next/next/no-img-element
+                session ? <Tool name={<img src={session.user?.image ?? "./example"} alt="Profile Image"
+                                           className="w-8 h-8 rounded-full my-auto mx-2 shadow-sm"/>} menu={<SignIn/>}/> :
+                    <Tool name={"Sign in"} menu={<SignIn/>}/>
             }
         </div>
     )
