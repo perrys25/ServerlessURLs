@@ -1,7 +1,7 @@
 "use client";
 
 import React, {FormEvent} from "react";
-import {SignIn} from "@/components/sign-in";
+import SignIn from "@/components/sign-in";
 
 export default function Home() {
     const [code, setCode] = React.useState<string>();

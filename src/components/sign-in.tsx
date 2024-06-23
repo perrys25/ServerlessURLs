@@ -2,7 +2,7 @@
 
 import { signIn } from "@/auth"
 
-export function SignIn() {
+export default async function SignIn() {
     return (
         <form
             action={async () => {
