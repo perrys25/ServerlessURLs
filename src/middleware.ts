@@ -9,10 +9,9 @@ const { auth } = NextAuth(authConfig)
 
 
 export const middleware = auth(async function middleware(request: NextRequest) {
-    console.log("[middleware.ts] Parsed by middleware")
     const URLS_KV = getRequestContext().env.URLS_KV;
     const path = request.nextUrl.pathname;
-    console.log(`[middleware.ts] Path: ${path}`)
+    console.log(`[middleware] Path: ${path}`)
     if (path === "/") {
         return NextResponse.next()
     }

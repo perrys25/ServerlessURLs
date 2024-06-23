@@ -5,7 +5,6 @@ export default async function SignIn() {
         <form
             action={async () => {
                 "use server";
-                console.log("Signin with GitHub")
                 await signIn("github", {redirectTo: "/"})
             }}
         >
