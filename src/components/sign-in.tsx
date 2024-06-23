@@ -42,7 +42,7 @@ export default async function SignIn() {
     return (
         <>
             <div
-                className="bg-gray-100 shadow-lg rounded-2xl p-4 flex flex-col text-gray-900 max-w-md ">
+                className="bg-gray-100 shadow-lg rounded-2xl p-4 flex flex-col text-gray-900 max-w-md sm:min-w-96">
                 <div className="p-6 space-y-4 md:p-8">
                     <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
                         Sign in to your account
