@@ -1,12 +1,10 @@
-"use server";
-
 import { signIn } from "@/auth"
 
 export default async function SignIn() {
     return (
         <form
             action={async () => {
-                "use server"
+                "use server";
                 console.log("Signin with GitHub")
                 await signIn("github")
             }}
