@@ -1,4 +1,4 @@
-const codeLength = 7
+export const codeLength = 7
 
 export default async function generateCode(URLS_KV: KVNamespace): Promise<string> {
     let code = ""
