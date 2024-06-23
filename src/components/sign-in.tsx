@@ -6,7 +6,7 @@ export default async function SignIn() {
             action={async () => {
                 "use server";
                 console.log("Signin with GitHub")
-                await signIn("github")
+                await signIn("github", {redirectTo: "/"})
             }}
         >
             <button type="submit">Signin with GitHub</button>

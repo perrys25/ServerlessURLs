@@ -7,6 +7,8 @@ async function AUTH_D1() {
     if (process.env.NODE_ENV === 'development') {
         return getRequestContext().env.AUTH_D1
     } else {
+        console.log('Loading AUTH_D1 from production environment')
+        console.log(process.env.AUTH_D1, process.env, JSON.stringify(process.env.AUTH_D1))
         return process.env.AUTH_D1
     }
 }
