@@ -15,6 +15,7 @@ async function AUTH_D1() {
 }
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
+    debug: true,
     adapter: D1Adapter(AUTH_D1()),
     session: { strategy: "jwt" },
     ...authConfig,
