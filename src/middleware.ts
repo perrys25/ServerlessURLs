@@ -8,7 +8,7 @@ import {codeLength} from "@/app/api/shorten/generateCode";
 const { auth } = NextAuth(authConfig)
 
 
-export default auth(async function middleware(request: NextRequest) {
+export const middleware = auth(async function middleware(request: NextRequest) {
     console.log("[middleware.ts] Parsed by middleware")
     const URLS_KV = getRequestContext().env.URLS_KV;
     const path = request.nextUrl.pathname;
