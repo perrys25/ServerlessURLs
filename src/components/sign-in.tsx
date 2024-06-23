@@ -1,3 +1,5 @@
+"use client";
+
 import AuthProvider from "@/components/authprovider";
 
 export function SignIn() {
