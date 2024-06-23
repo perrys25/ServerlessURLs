@@ -1,5 +1,3 @@
-"use client";
-
 import React, {FormEvent} from "react";
 import SignIn from "@/components/sign-in";
 
@@ -25,8 +23,8 @@ export default function Home() {
     }
     return (
         <>
+            <SignIn/>
             <div className="max-w-7xl mx-auto">
-                <SignIn/>
                 <div className="m-8 bg-gray-100 shadow-lg rounded-2xl p-4 flex flex-col">
                     <h1 className="mx-auto p-2 font-semibold text-4xl">Serverless URLs</h1>
                     <form className="flex flex-col md:flex-row md:space-x-2 space-y-2 md:space-y-0" onSubmit={onSubmit}>
