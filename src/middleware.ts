@@ -9,7 +9,6 @@ const { auth } = NextAuth(authConfig)
 
 
 export const middleware = auth(async function middleware(request: NextRequest) {
-    const URLS_KV = getRequestContext().env.URLS_KV;
     const path = request.nextUrl.pathname;
     console.log(`[middleware] Path: ${path}`)
     if (path === "/") {
@@ -22,9 +21,16 @@ export const middleware = auth(async function middleware(request: NextRequest) {
     if (code.length !== codeLength || !/^[a-z0-9]+$/.test(code)) {
         return NextResponse.next()
     }
+    const context = getRequestContext();
+    const URLS_KV = context.env.URLS_KV;
     const url = await URLS_KV.get(code);
     if (!url) {
         return NextResponse.next()
     }
-    return NextResponse.redirect(new URL(url), {status: 301})
+    const LINK_TRACKING = context.env.LINK_TRACKING;
+    LINK_TRACKING.writeDataPoint({
+        blobs: ["redirect", code, request.headers.get("Referer") ?? ""],
+        indexes: [code]
+    })
+    return NextResponse.redirect(new URL(url), {status: 307})
 })

@@ -39,6 +39,10 @@ database_id = "58849171-3c4c-4296-84ad-f936c5c6aa49"
 # class_name = "MyDurableObject"
 # script_name = 'my-durable-object'
 
+[[analytics_engine_datasets]]
+binding = "LINK_TRACKING"
+dataset = "link_tracking"
+
 # Bind a KV Namespace. Use KV as persistent storage for small key-value pairs.
 # Docs: https://developers.cloudflare.com/pages/functions/bindings/#kv-namespaces
 # KV Example:
@@ -77,7 +81,6 @@ id = "7588ead66d8c481d905672e48b442a9b"
 binding = "URLS_KV"
 id = "7588ead66d8c481d905672e48b442a9b"
 
-
 # [[env.production.d1_databases]]
 # binding = "AUTH_D1"
 # database_name = "serverless_auth"
@@ -96,3 +99,7 @@ id = "b18f6ebebfd9474ab3b08dfc0ba22d3e"
 binding = "AUTH_D1"
 database_name = "serverless_auth"
 database_id = "58849171-3c4c-4296-84ad-f936c5c6aa49"
+
+[[env.production.analytics_engine_datasets]]
+binding = "LINK_TRACKING"
+dataset = "link_tracking"

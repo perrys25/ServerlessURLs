@@ -2,7 +2,7 @@
 
 import React, {FormEvent} from "react";
 
-export default async function Home() {
+export default function Home() {
     const [code, setCode] = React.useState<string>();
 
     async function onSubmit(event: FormEvent<HTMLFormElement>) {
