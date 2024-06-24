@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:auth": "concurrently \"npm run keycloak\" \"npm run dev\" -n \"keycloak,next\" --hide \"keycloak\" --kill-others-on-fail true",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
