@@ -28,14 +28,15 @@ export default async function getAnalytics(code: string) {
         },
         body: query
     })
+    const text = await response.text();
     let result: { rows: number };
     try {
-        result = await response.json();
+        result = await JSON.parse(text);
     } catch (error) {
-        console.log(error, response)
+        console.log(error, text)
         return undefined
     }
-    console.log(response)
+    console.log(text)
     const numClicks = result.rows;
     return {url, clicks: numClicks}
 }
