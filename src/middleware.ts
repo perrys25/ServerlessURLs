@@ -14,7 +14,7 @@ export const middleware = auth(async function middleware(request: NextRequest) {
     if (path === "/") {
         return NextResponse.next()
     }
-    const segments =  request.nextUrl.pathname.split('/');
+    const segments =  request.nextUrl.pathname.substring(1).split('/');
     if (segments.length > 1) {
         return NextResponse.next()
     }
