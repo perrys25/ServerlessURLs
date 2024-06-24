@@ -16,9 +16,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     session: { strategy: "jwt" },
     callbacks: {
         session({session, token}) {
-            session.user.id = session.userId
-            console.log('[auth.ts] session ', session, JSON.stringify(session))
-            console.log('[auth.ts] token ', token, JSON.stringify(token))
+            session.user.id = token.sub ?? ""
+            console.log("[auth.ts] session.user.id: ", session.user.id)
             return session
         },
     },
