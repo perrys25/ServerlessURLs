@@ -3,13 +3,17 @@ import {getRequestContext} from "@cloudflare/next-on-pages";
 
 export default async function getAnalytics(code: string) {
     const session = await auth()
-    if (!session || !session.user) {
+    if (!session?.user?.id) {
         return undefined
     }
     const context = getRequestContext();
     const URLS_KV = context.env.URLS_KV;
-    const url = await URLS_KV.get(code);
-    if (!url) {
+    const {value: url, metadata}: KVNamespaceGetWithMetadataResult<string, {
+        author: string | undefined
+    }> = await URLS_KV.getWithMetadata(code, {
+        cacheTtl: 60 * 60 * 24 * 7 // 1 week
+    });
+    if (!url || !metadata || metadata.author !== session.user.id) {
         return undefined
     }
     const query = `

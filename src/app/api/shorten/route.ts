@@ -29,7 +29,21 @@ export async function POST(req: NextRequest) {
 
     const URLS_KV = context.env.URLS_KV;
     const code = await generateCode(URLS_KV);
-    await URLS_KV.put(code, url);
+
+    if (session?.user?.id) {
+        await URLS_KV.put(code, url, {
+            metadata: {
+                author: session?.user?.id
+            }
+        });
+    } else {
+        await URLS_KV.put(code, url, {
+            metadata: {
+                author: "none",
+            },
+            expirationTtl: 60 * 60 * 24 * 366 // 1 year for non-authenticated users
+        });
+    }
     console.log(`Shortened ${url} to ${code}`)
 
     const host = new URL(req.nextUrl).host;

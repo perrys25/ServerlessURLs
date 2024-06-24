@@ -6,14 +6,14 @@ export const runtime = 'edge'
 
 export async function GET(req: NextRequest, {params}: { params: { code: string } }) {
     const session = await auth()
-    if (!session || !session.user) {
+    if (!session?.user?.id) {
         return new Response(null, {status: 401})
     }
     const context = getRequestContext();
     const URLS_KV = context.env.URLS_KV;
-    const url = await URLS_KV.get(params.code);
-    if (!url) {
-        return new Response(null, {status: 404})
+    const {value: url, metadata}: KVNamespaceGetWithMetadataResult<string, {author: string | undefined}> = await URLS_KV.getWithMetadata(params.code, {cacheTtl: 60 * 60 * 24 * 7});
+    if (!url || !metadata || metadata.author !== session.user.id) {
+        return new Response(null, {status: 401})
     }
     const query = `
         SELECT

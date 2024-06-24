@@ -49,6 +49,10 @@ dataset = "link_tracking"
 [[kv_namespaces]]
 binding = "URLS_KV"
 id = "7588ead66d8c481d905672e48b442a9b"
+#
+#[[kv_namespaces]]
+#binding = "AUTHORS_KV"
+#id = "2bafc91852bc4fda9cb50af3bcae048f"
 
 # Bind a Queue producer. Use this binding to schedule an arbitrary task that may be processed later by a Queue consumer.
 # Docs: https://developers.cloudflare.com/pages/functions/bindings/#queue-producers
@@ -81,6 +85,10 @@ id = "7588ead66d8c481d905672e48b442a9b"
 binding = "URLS_KV"
 id = "7588ead66d8c481d905672e48b442a9b"
 
+#[[env.preview.kv_namespaces]]
+#binding = "AUTHORS_KV"
+#id = "2bafc91852bc4fda9cb50af3bcae048f"
+
 # [[env.production.d1_databases]]
 # binding = "AUTH_D1"
 # database_name = "serverless_auth"
@@ -94,6 +102,10 @@ id = "7588ead66d8c481d905672e48b442a9b"
 [[env.production.kv_namespaces]]
 binding = "URLS_KV"
 id = "b18f6ebebfd9474ab3b08dfc0ba22d3e"
+#
+#[[env.production.kv_namespaces]]
+#binding = "AUTHORS_KV"
+#id = "2bafc91852bc4fda9cb50af3bcae048f"
 
 [[env.production.d1_databases]]
 binding = "AUTH_D1"
