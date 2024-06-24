@@ -34,7 +34,7 @@ export const middleware = auth(async function middleware(request: NextRequest) {
     const LINK_TRACKING = context.env.LINK_TRACKING;
     console.log(`[middleware] Redirecting ${code}`)
     LINK_TRACKING.writeDataPoint({
-        blobs: ["redirect", code, request.headers.get("Referer") ?? ""],
+        blobs: ["redirect", code, request.headers.get("Referer") ?? "", request.ip ? new TextDecoder().decode((await crypto.subtle.digest('SHA-256', new TextEncoder().encode(request.ip)))) : "unknown"],
         indexes: [code]
     })
     return NextResponse.redirect(new URL(url), {status: 307})

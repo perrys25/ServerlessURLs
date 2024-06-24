@@ -19,7 +19,8 @@ export default async function getAnalytics(code: string) {
     const query = `
         SELECT SUM(_sample_interval) as counter
         FROM link_tracking
-        WHERE blob2 = '${code}'`
+        WHERE blob2 = '${code}'
+        `
     const API = `https://api.cloudflare.com/client/v4/accounts/${process.env.CF_API_ID}/analytics_engine/sql`;
     const response = await fetch(API, {
         method: 'POST',
