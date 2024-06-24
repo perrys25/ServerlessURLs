@@ -20,6 +20,7 @@
     "@fortawesome/free-brands-svg-icons": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
+    "boring-avatars": "^1.10.2",
     "is-url-http": "^2.3.8",
     "next": "14.1.0",
     "next-auth": "^5.0.0-beta.19",
