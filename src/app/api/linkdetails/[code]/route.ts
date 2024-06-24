@@ -22,7 +22,7 @@ export async function GET(req: NextRequest, {params}: { params: { code: string }
         SELECT
             timestamp, blob1 AS change, blob2 AS code, blob3 AS referer
         FROM link_tracking
-        WHERE code = ${params.code}`
+        WHERE code = '${params.code}'`
     const API = `https://api.cloudflare.com/client/v4/accounts/${process.env.CF_API_ID}/analytics_engine/sql`;
     const response = await fetch(API, {
         method: 'POST',
