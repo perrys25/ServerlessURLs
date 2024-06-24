@@ -32,9 +32,7 @@ export async function GET(req: NextRequest, {params}: { params: { code: string }
         },
         body: query
     })
-    // if (response.status !== 200) {
-    //     return new Response(null, {status: 500})
-    // }
+    console.log(response.text())
     console.log(`Fetched ${response.status}`)
     const result: { data: any[] } = await response.json();
     const numClicks = result.data.length;
