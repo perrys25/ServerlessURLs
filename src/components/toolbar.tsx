@@ -20,10 +20,10 @@ export default async function Toolbar() {
             {
                 // eslint-disable-next-line @next/next/no-img-element
                 session ? <Tool name={session.user?.image ? (<img src={session.user.image} alt="Profile Image"
-                                                                  className="w-8 h-8 rounded-full my-2 mx-2 shadow-md"/>) : (
-                        <div className="w-8 h-8 rounded-full py-auto mx-2 shadow-sm">
+                                                                  className="w-8 h-8 rounded-full m-2 shadow-md"/>) : (
+                        <div className="w-8 h-8 rounded-full m-2 shadow-md">
                             <Avatar
-                                size={40}
+                                size={32}
                                 name={new TextDecoder().decode((await crypto.subtle.digest('SHA-256', new TextEncoder().encode(session.user?.email ?? 'unknown'))))}
                                 variant="beam"
                                 colors={['#92A1C6', '#146A7C', '#F0AB3D', '#C271B4', '#C20D90']}
