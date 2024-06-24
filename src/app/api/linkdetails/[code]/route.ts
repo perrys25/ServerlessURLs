@@ -32,7 +32,7 @@ export async function GET(req: NextRequest, {params}: { params: { code: string }
         },
         body: query
     })
-    console.log(response.text())
+    console.log(await response.text())
     console.log(`Fetched ${response.status}`)
     const result: { data: any[] } = await response.json();
     const numClicks = result.data.length;
