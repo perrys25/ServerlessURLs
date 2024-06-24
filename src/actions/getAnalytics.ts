@@ -32,10 +32,10 @@ export default async function getAnalytics(code: string) {
     try {
         result = await response.json();
     } catch (error) {
-        console.log(response)
+        console.log(error, response)
         return undefined
     }
-    console.log(JSON.stringify(response))
+    console.log(response)
     const numClicks = result.rows;
     return {url, clicks: numClicks}
 }
