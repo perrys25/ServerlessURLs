@@ -23,7 +23,7 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "boring-avatars": "^1.10.2",
     "is-url-http": "^2.3.8",
-    "next": "14.1.0",
+    "next": "^14.2",
     "next-auth": "^5.0.0-beta.19",
     "react": "^18",
     "react-dom": "^18"
@@ -37,7 +37,7 @@
     "autoprefixer": "^10.0.1",
     "concurrently": "^8.2.2",
     "eslint": "^8",
-    "eslint-config-next": "14.1.0",
+    "eslint-config-next": "^14.2",
     "eslint-plugin-next-on-pages": "^1.11.3",
     "postcss": "^8",
     "tailwindcss": "^3.3.0",
