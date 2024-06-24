@@ -5,7 +5,7 @@ import {getRequestContext} from "@cloudflare/next-on-pages";
 export const runtime = 'edge'
 
 export async function GET(req: NextRequest, {params}: { params: { code: string } }) {
-    console.log('GET /api/shorten/[code]')
+    console.log('GET /api/linkdetails/[code]')
     const session = await auth()
     if (!session || !session.user) {
         return new Response(null, {status: 401})
