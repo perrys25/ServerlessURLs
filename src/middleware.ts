@@ -14,7 +14,11 @@ export const middleware = auth(async function middleware(request: NextRequest) {
     if (path === "/") {
         return NextResponse.next()
     }
-    const code = request.nextUrl.pathname.split('/').pop();
+    const segments =  request.nextUrl.pathname.split('/');
+    if (segments.length > 1) {
+        return NextResponse.next()
+    }
+    const code =segments.pop();
     if (!code) {
         return NextResponse.next()
     }
