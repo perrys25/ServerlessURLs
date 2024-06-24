@@ -23,7 +23,7 @@ export async function GET(req: NextRequest, {params}: { params: { code: string }
         SELECT
             timestamp, blob1 AS change, blob2 AS code, blob3 AS referer
         FROM link_tracking
-        WHERE code = ${params.code}`.sql
+        WHERE code = ${params.code}`.text
     const API = `https://api.cloudflare.com/client/v4/accounts/${process.env.CF_API_ID}/analytics_engine/sql`;
     const response = await fetch(API, {
         method: 'POST',
@@ -32,9 +32,10 @@ export async function GET(req: NextRequest, {params}: { params: { code: string }
         },
         body: query
     })
-    console.log(await response.text())
+    const text = await response.text();
+    console.log(text)
     console.log(`Fetched ${response.status}`)
-    const result: { data: any[] } = await response.json();
+    const result: { data: any[] } = JSON.parse(text);
     const numClicks = result.data.length;
     console.log(`Found ${numClicks} clicks`)
     return new Response(JSON.stringify({url, clicks: numClicks}), {status: 200})
