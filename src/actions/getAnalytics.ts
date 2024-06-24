@@ -17,7 +17,7 @@ export default async function getAnalytics(code: string) {
         return null
     }
     const query = `
-        SELECT SUM(_sample_interval)
+        SELECT SUM(_sample_interval) as counter
         FROM link_tracking
         WHERE blob2 = '${code}'`
     const API = `https://api.cloudflare.com/client/v4/accounts/${process.env.CF_API_ID}/analytics_engine/sql`;
@@ -29,7 +29,7 @@ export default async function getAnalytics(code: string) {
         body: query
     })
     const text = await response.text();
-    let result: { rows: number };
+    let result: { data: {counter: string}[] };
     try {
         result = await JSON.parse(text);
     } catch (error) {
@@ -37,6 +37,6 @@ export default async function getAnalytics(code: string) {
         return undefined
     }
     console.log(text)
-    const numClicks = result.rows;
+    const numClicks = Number.parseInt(result.data[0].counter);
     return {url, clicks: numClicks}
 }
