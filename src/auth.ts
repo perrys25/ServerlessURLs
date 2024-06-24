@@ -14,5 +14,12 @@ function AUTH_D1() {
 export const { handlers, auth, signIn, signOut } = NextAuth({
     adapter: D1Adapter(AUTH_D1()),
     session: { strategy: "jwt" },
+    callbacks: {
+        session({session, token}) {
+            session.user.id = session.userId
+            console.log('[auth.ts] session.userId ', session.userId)
+            return session
+        },
+    },
     ...authConfig,
 })
