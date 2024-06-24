@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
 
     const LINK_TRACKING = context.env.LINK_TRACKING;
 
-    LINK_TRACKING.writeDataPoint({
+    LINK_TRACKING?.writeDataPoint({
         blobs: ["create", code, url, session?.user?.id ?? "", req.ip ?? ""],
         indexes: [session?.user?.id ?? ""]
     })

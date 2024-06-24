@@ -17,7 +17,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     callbacks: {
         session({session, token}) {
             session.user.id = session.userId
-            console.log('[auth.ts] session.userId ', session.userId)
+            console.log('[auth.ts] session ', session, JSON.stringify(session))
+            console.log('[auth.ts] token ', token, JSON.stringify(token))
             return session
         },
     },
