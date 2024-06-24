@@ -1,6 +1,6 @@
 import NextAuth from "next-auth"
 import authConfig from "./auth.config"
-import { D1Adapter } from "@auth/d1-adapter"
+import {D1Adapter} from "@auth/d1-adapter"
 import {getRequestContext} from '@cloudflare/next-on-pages'
 
 function AUTH_D1() {

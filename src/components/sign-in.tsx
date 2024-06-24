@@ -2,9 +2,10 @@ import {signIn} from "@/auth"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {IconProp} from "@fortawesome/fontawesome-svg-core";
 import React from "react";
-import {faDiscord, faGithub, faGoogle} from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
-import {providers} from "@/auth.config";
+import {providerData} from "@/auth.config";
+import {redirect} from "next/navigation";
+import {AuthError} from "next-auth";
 
 function OauthButton({provider, icon, name, color}: {
     provider: string,
@@ -16,7 +17,22 @@ function OauthButton({provider, icon, name, color}: {
         <form
             action={async () => {
                 "use server";
-                await signIn(provider, {redirectTo: "/"})
+                try {
+                    await signIn(provider, {redirectTo: "/"})
+                } catch (error) {
+                    // Signin can fail for a number of reasons, such as the user
+                    // not existing, or the user not having the correct role.
+                    // In some cases, you may want to redirect to a custom error
+                    if (error instanceof AuthError) {
+                        return redirect(`/error?error=${error.type}`)
+                    }
+
+                    // Otherwise if a redirects happens NextJS can handle it
+                    // so you can just re-thrown the error and let NextJS handle it.
+                    // Docs:
+                    // https://nextjs.org/docs/app/api-reference/functions/redirect#server-component
+                    throw error
+                }
             }}
             className={"flex flex-row flex-grow"}
         >
@@ -50,9 +66,12 @@ export default async function SignIn() {
                     </h1>
                     <div className="space-y-4 md:space-y-6">
                         {
-                            providers.map(({provider, icon, name, color}) => (
-                                <OauthButton provider={provider.name} key={provider.name} icon={icon} name={name} color={color}/>
-                            ))
+                            providerData.map(({provider, icon, color}) => {
+                                return (<OauthButton provider={provider.id}
+                                                     key={provider.id} icon={icon}
+                                                     name={provider.name} color={color}/>)
+
+                            })
                         }
                         <p className="text-sm font-light text-gray-500">
                             Don’t have an account yet? <Link href="/sign-up"
