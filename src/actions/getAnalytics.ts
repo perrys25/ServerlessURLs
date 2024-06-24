@@ -17,10 +17,9 @@ export default async function getAnalytics(code: string) {
         return undefined
     }
     const query = `
-        SELECT
-            timestamp, blob1 AS change, blob2 AS code, blob3 AS referer
+        SELECT SUM(_sample_interval)
         FROM link_tracking
-        WHERE code = '${code}'`
+        WHERE blob2 = '${code}'`
     const API = `https://api.cloudflare.com/client/v4/accounts/${process.env.CF_API_ID}/analytics_engine/sql`;
     const response = await fetch(API, {
         method: 'POST',
@@ -30,6 +29,7 @@ export default async function getAnalytics(code: string) {
         body: query
     })
     let result: { rows: number };
+    console.log(response)
     try {
         result = await response.json();
     } catch (error) {
