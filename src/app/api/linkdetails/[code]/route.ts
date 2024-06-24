@@ -6,16 +6,19 @@ import {getRequestContext} from "@cloudflare/next-on-pages";
 export const runtime = 'edge'
 
 export async function GET(req: NextRequest, {params}: { params: { code: string } }) {
+    console.log('GET /api/shorten/[code]')
     const session = await auth()
-    if (!session) {
+    if (!session || !session.user) {
         return new Response(null, {status: 401})
     }
+    console.log("Found User " + session.user.id)
     const context = getRequestContext();
     const URLS_KV = context.env.URLS_KV;
     const url = await URLS_KV.get(params.code);
     if (!url) {
         return new Response(null, {status: 404})
     }
+    console.log(`Redirects to ${url}`)
     const query = SQL`
         SELECT
             timestamp, blob1 AS change, blob2 AS code, blob3 AS referer
@@ -29,10 +32,12 @@ export async function GET(req: NextRequest, {params}: { params: { code: string }
         },
         body: query
     })
-    if (response.status !== 200) {
-        return new Response(null, {status: 500})
-    }
+    // if (response.status !== 200) {
+    //     return new Response(null, {status: 500})
+    // }
+    console.log(`Fetched ${response.status}`)
     const result: { data: any[] } = await response.json();
     const numClicks = result.data.length;
+    console.log(`Found ${numClicks} clicks`)
     return new Response(JSON.stringify({url, clicks: numClicks}), {status: 200})
 }
