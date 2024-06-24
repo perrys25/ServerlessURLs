@@ -10,7 +10,7 @@ export function Tool({name, menu, link}: {name: string | React.ReactNode, menu: 
     if (menu) {
         return (
             <div className="px-4 my-auto overflow-visible relative">
-                <button onClick={() => setOpen(!open)} className="text-blue-600 hover:underline py-3">{name}</button>
+                <button onClick={() => setOpen(!open)} className="text-blue-600 hover:underline py-auto">{name}</button>
                 {
                     open && <div className="z-40 absolute right-4">
                         {menu}

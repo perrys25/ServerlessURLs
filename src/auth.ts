@@ -4,7 +4,7 @@ import { D1Adapter } from "@auth/d1-adapter"
 import {getRequestContext} from '@cloudflare/next-on-pages'
 
 function AUTH_D1() {
-    if (process.env.NODE_ENV === 'development') {
+    if (process.env.TEST_AUTH === 'development') {
         return getRequestContext().env.AUTH_D1
     } else {
         return process.env.AUTH_D1

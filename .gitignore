@@ -44,3 +44,6 @@ next-env.d.ts
 
 # bash
 .bashrc
+
+# keycloak (identity provider for development mode)
+keycloak

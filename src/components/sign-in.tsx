@@ -4,6 +4,7 @@ import {IconProp} from "@fortawesome/fontawesome-svg-core";
 import React from "react";
 import {faDiscord, faGithub, faGoogle} from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
+import {providers} from "@/auth.config";
 
 function OauthButton({provider, icon, name, color}: {
     provider: string,
@@ -48,12 +49,14 @@ export default async function SignIn() {
                         Sign in to your account
                     </h1>
                     <div className="space-y-4 md:space-y-6">
-                        <OauthButton provider="google" icon={faGoogle} name={"Google"} color={"#DB4437"}/>
-                        <OauthButton provider="github" icon={faGithub} name="GitHub" color={"#333"}/>
-                        <OauthButton provider="discord" icon={faDiscord} name="Discord" color={"#5865F2"}/>
+                        {
+                            providers.map(({provider, icon, name, color}) => (
+                                <OauthButton provider={provider.name} key={provider.name} icon={icon} name={name} color={color}/>
+                            ))
+                        }
                         <p className="text-sm font-light text-gray-500">
                             Don’t have an account yet? <Link href="/sign-up"
-                                                          className="font-medium text-primary-600 hover:underline">Sign
+                                                             className="font-medium text-primary-600 hover:underline">Sign
                             up</Link>
                         </p>
                     </div>
