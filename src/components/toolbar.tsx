@@ -20,7 +20,7 @@ export default async function Toolbar() {
             {
                 // eslint-disable-next-line @next/next/no-img-element
                 session ? <Tool name={session.user?.image ? (<img src={session.user.image} alt="Profile Image"
-                                                                  className="w-8 h-8 rounded-full py-auto mx-2 shadow-sm"/>) : (
+                                                                  className="w-8 h-8 rounded-full py-2 mx-2 shadow-md"/>) : (
                         <div className="w-8 h-8 rounded-full py-auto mx-2 shadow-sm">
                             <Avatar
                                 size={40}
