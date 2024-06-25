@@ -9,12 +9,16 @@
     "start": "next start",
     "lint": "next lint",
     "pages:build": "npx @cloudflare/next-on-pages",
-    "preview": "npm run pages:build && wrangler pages dev --port 3000 --kv=URLS_KV --d1 AUTH_D1",
+    "preview": "npm run pages:build && wrangler pages dev --port 3000 --kv=URLS_KV --d1 AUTH_D1 --x-dev-env",
     "auth": "concurrently \"npm run keycloak\" \"npm run preview\" -n \"keycloak,next\" --hide \"keycloak\" --kill-others-on-fail true",
     "deploy": "npm run pages:build && wrangler pages deploy",
     "cf-typegen": "wrangler types --env-interface CloudflareEnv env.d.ts",
-    "keycloak": "sh ./keycloak/bin/kc.sh start-dev --hostname http://localhost:8080"
+    "keycloak": "sh ./keycloak/bin/kc.sh start-dev --hostname http://localhost:8080",
+    "prettier": "prettier --write ."
   },
+  "pre-commit": [
+    "prettier"
+  ],
   "dependencies": {
     "@auth/d1-adapter": "^1.4.1",
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
@@ -39,8 +43,12 @@
     "concurrently": "^8.2.2",
     "eslint": "^8",
     "eslint-config-next": "^14.2",
+    "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-next-on-pages": "^1.11.3",
     "postcss": "^8",
+    "pre-commit": "^1.2.2",
+    "prettier": "^3.3.2",
+    "prettier-plugin-tailwindcss": "^0.6.5",
     "tailwindcss": "^3.3.0",
     "typescript": "^5",
     "vercel": "^34.2.7",

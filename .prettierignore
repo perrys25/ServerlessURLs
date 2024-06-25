@@ -1,0 +1,7 @@
+# Ignore artifacts:
+.idea
+.next
+.vercel
+.wrangler
+keycloak
+node_modules

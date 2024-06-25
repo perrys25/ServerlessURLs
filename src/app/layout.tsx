@@ -1,14 +1,14 @@
 // import type { Metadata } from "next";
-import {Inter} from "next/font/google";
-import './global.css'
+import { Inter } from "next/font/google";
+import "./global.css";
 import Topbar from "@/components/toolbar";
-import {ToastContainer} from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import React from "react";
 import "react-toastify/dist/ReactToastify.css";
 
-const inter = Inter({subsets: ["latin"]});
+const inter = Inter({ subsets: ["latin"] });
 
-export const runtime = 'edge'
+export const runtime = "edge";
 
 // export const metadata: Metadata = {
 //   title: "Create Next App",
@@ -16,18 +16,22 @@ export const runtime = 'edge'
 // };
 
 export default function RootLayout({
-                                       children,
-                                   }: Readonly<{
-    children: React.ReactNode;
+  children,
+}: Readonly<{
+  children: React.ReactNode;
 }>) {
-    return (
-
-        <html lang="en" className="h-full">
-        <body className={inter.className + " h-full flex flex-col"}>
-        <Topbar/>
+  return (
+    <html lang="en" className="h-full">
+      <body className={inter.className + " flex h-full flex-col"}>
+        <Topbar />
         {children}
-        <ToastContainer position="bottom-left" theme="light" pauseOnHover={false} hideProgressBar={true}/>
-        </body>
-        </html>
-    );
+        <ToastContainer
+          position="bottom-left"
+          theme="light"
+          pauseOnHover={false}
+          hideProgressBar={true}
+        />
+      </body>
+    </html>
+  );
 }

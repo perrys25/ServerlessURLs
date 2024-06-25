@@ -2,15 +2,15 @@
 // by running `wrangler types --env-interface CloudflareEnv env.d.ts`
 
 interface CloudflareEnv {
-	URLS_KV: KVNamespace;
-	AUTH_SECRET: string;
-	AUTH_KEYCLOAK_ID: string;
-	AUTH_KEYCLOAK_SECRET: string;
-	AUTH_KEYCLOAK_ISSUER: string;
-	AUTH_TRUST_HOST: string;
-	TEST_AUTH: string;
-	CF_API_ID: string;
-	CF_API_TOKEN: string;
-	AUTH_D1: D1Database;
-	LINK_TRACKING: AnalyticsEngineDataset;
+  URLS_KV: KVNamespace;
+  AUTH_SECRET: string;
+  AUTH_KEYCLOAK_ID: string;
+  AUTH_KEYCLOAK_SECRET: string;
+  AUTH_KEYCLOAK_ISSUER: string;
+  AUTH_TRUST_HOST: string;
+  TEST_AUTH: string;
+  CF_API_ID: string;
+  CF_API_TOKEN: string;
+  AUTH_D1: D1Database;
+  LINK_TRACKING: AnalyticsEngineDataset;
 }
