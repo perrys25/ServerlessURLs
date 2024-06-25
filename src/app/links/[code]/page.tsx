@@ -30,7 +30,6 @@ export default async function Home({params: {code}}: { params: { code: string } 
     }
     const headersList = headers();
     const host = headersList.get("host");
-    console.log(headersList)
     const https = headersList.get("x-forwarded-proto") === "https";
     return (
         <div className="flex-grow flex flex-col">
